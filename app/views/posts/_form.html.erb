@@ -22,8 +22,10 @@
   </div>
 
   <div class="field">
-    <%= form.label :published, class: 'form-label' %>
-    <%= form.check_box :published, id: :post_published, class: 'form-checkbox' %>
+    <%= form.label :published, class: 'form-checkbox' do %>
+      <%= form.check_box :published, id: :post_published, class: 'form-checkbox' %>
+      <i class="form-icon"></i> Published
+    <% end %>
   </div>
 
   <div class="actions">
