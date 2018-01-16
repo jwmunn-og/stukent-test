@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :post_title %>
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, id: :post_title, class: 'form-input' %>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, id: :post_body %>
+    <%= form.label :body, class: 'form-label' %>
+    <%= form.text_area :body, id: :post_body, class: 'form-input' %>
   </div>
 
   <div class="field">
-    <%= form.label :published %>
-    <%= form.check_box :published, id: :post_published %>
+    <%= form.label :published, class: 'form-label' %>
+    <%= form.check_box :published, id: :post_published, class: 'form-checkbox' %>
   </div>
 
   <div class="actions">
