@@ -6,13 +6,32 @@ class PostForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const isChecked = document.getElementById("myCheckbox").checked;
+    const factorializedNumber = this.randomNumber();
+    const assignFactorial = this.factorialize(factorializedNumber);
+
     const formData = {
       title: this.title.value,
       body: this.body.value,
-      published: isChecked
+      published: isChecked,
+      factorial: assignFactorial
     };
     console.log(formData);
     this.props.submitPost(formData);
+  }
+
+  randomNumber = () => {
+    return Math.floor(Math.random() * 6) + 1;
+  }
+
+  factorialize(num) {
+    let number = num;
+    if (number < 0) {
+      return -1;
+    } else if (number == 0) {
+      return 1;
+    } else {
+      return (number * this.factorialize(number - 1));
+    }
   }
 
 

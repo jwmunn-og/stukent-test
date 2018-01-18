@@ -10,8 +10,7 @@ class Post extends React.Component {
       <div className="post-container">
         <p>
           <strong>Title:</strong>
-          {post.title} about Factorials
-          {/* {post.factorial.toString()} */}
+          {post.title} about Factorials {post.factorial.toString()}
         </p>
 
         <p>
@@ -25,6 +24,7 @@ class Post extends React.Component {
         </p>
 
         <span className='btn' onClick={() => showPostForm(post.url)}>Edit</span>
+        &nbsp;&nbsp;
         <span className='btn'  onClick={() => goBack()}>Back</span>
       </div>
     );
