@@ -11,17 +11,25 @@ import axios from 'axios';
 class App extends React.Component {
   constructor() {
     super();
+    this.state = {
+      posts: []
+    }
   }
 
   getPosts = () => {
     axios.get('/posts.json')
-    .then((res) => console.log(res.data) )
+    .then((res) => this.setState({ posts: res.data }) )
     .catch((err) => console.log(err.response.data) );
   }
 
   render() {
+    const { posts } = this.state;
+
     return (
-      <List getPosts={this.getPosts}/>
+      <List
+        getPosts={this.getPosts}
+        posts={posts}
+      />
     );
   }
 }
