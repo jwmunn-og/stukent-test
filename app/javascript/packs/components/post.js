@@ -9,19 +9,23 @@ class Post extends React.Component {
     return (
       <div className="post-container">
         <p>
-          <strong>Title:</strong>
-          {post.title} about Factorials {post.factorial.toString()}
+          <strong>Title: </strong>
+          <h2>{post.title}</h2>
+          <span className="label label-primary">Post Factorial: {post.factorial.toString()}</span>
         </p>
 
+
         <p>
-          <strong>Body:</strong>
+          <strong>Body: </strong>
           {post.body}
         </p>
 
         <p>
-          <strong>Published:</strong>
+          <strong>Published: </strong>
           {post.published.toString()}
         </p>
+
+        <div class="divider"></div>
 
         <span className='btn' onClick={() => showPostForm(post.url)}>Edit</span>
         &nbsp;&nbsp;

@@ -35,7 +35,6 @@ class App extends React.Component {
   }
 
   showPostForm = (url) => {
-    console.log('run showPostForm');
     axios.get(`${url}`)
       .then((res) => this.setState({ post: res.data, postFormVisible: true, view: 'form' }) )
       .catch((err) => console.log(err.response.data) );
@@ -78,7 +77,7 @@ class App extends React.Component {
     const { showPost, postFormVisible, posts, post } = this.state;
 
     return (
-      <div>
+      <div className="col-sm-12 col-md-10 col-8 col-mx-auto">
         {(() => {
           switch (this.state.view) {
             case "list":  return <List

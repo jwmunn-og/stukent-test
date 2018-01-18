@@ -41,6 +41,8 @@ class PostForm extends React.Component {
 
     return (
       <div>
+        <h1>Edit Post</h1>
+
         <form className="form-container" onSubmit={(e) => this.onSubmit(e)}>
           <div className="field">
             <label className="form-label" htmlFor="post_title">Title</label>
@@ -65,17 +67,20 @@ class PostForm extends React.Component {
           </div>
 
           <div className="field">
-            {/* Add ref for checkbox */}
             <label htmlFor="post_published">
               <input id="myCheckbox" type="checkbox" onChange={this.handleInputChange} /> Published
             </label>
           </div>
-
+          <br />
           <div className="actions">
-            <input type="submit" name="commit" value="Update Post" data-disable-with="Update Post" className="btn btn-success" />
+            <input type="submit" name="commit" value="Submit Post" data-disable-with="Submit Post" className="btn btn-success" />
           </div>
         </form>
-        <span className='btn' onClick={() => getPost(post.url)}>Show</span>
+
+        <div class="divider"></div>
+
+        <span className='btn btn-primary' onClick={() => getPost(post.url)}>Show Post</span>
+        &nbsp;&nbsp;
         <span className='btn'  onClick={() => goBack()}>Back</span>
         </div>
     );
