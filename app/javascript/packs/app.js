@@ -5,14 +5,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import List from './components/list'
 import axios from 'axios';
+import List from './components/list'
+import Post from './components/post'
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      posts: []
+      showPost: false,
+      posts: [],
+      post: {}
     }
   }
 
@@ -22,14 +25,34 @@ class App extends React.Component {
     .catch((err) => console.log(err.response.data) );
   }
 
+  getPost = (url) => {
+    axios.get(`${url}`)
+      .then((res) => this.setState({ post: res.data, showPost: true }) )
+      .catch((err) => console.log(err.response.data) );
+  }
+
+  goBack = () => {
+    this.setState({ showPost: false })
+  }
+
   render() {
-    const { posts } = this.state;
+    const { showPost, posts, post } = this.state;
 
     return (
-      <List
-        getPosts={this.getPosts}
-        posts={posts}
-      />
+      <div>
+        {showPost ?
+          <Post
+            post={post}
+            goBack={this.goBack} />
+          :
+          <List
+            getPosts={this.getPosts}
+            posts={posts}
+            getPost={this.getPost}
+          />
+        }
+      </div>
+
     );
   }
 }

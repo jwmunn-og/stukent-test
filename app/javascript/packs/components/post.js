@@ -1,33 +1,31 @@
-import React from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 class Post extends React.Component {
   render() {
-    const { post } = this.props;
+    const { showPost, post, goBack } = this.props;
 
     return (
-      <tr>
-        <td>
-          {post.title}
-        </td>
-        <td>
+      <div className="note-container">
+        <p>
+          <strong>Title:</strong>
+          {post.title} about Factorials {post.factorial.toString()}
+        </p>
+
+        <p>
+          <strong>Body:</strong>
           {post.body}
-          {post.published}
-        </td>
-        <td>
+        </p>
+
+        <p>
+          <strong>Published:</strong>
           {post.published.toString()}
-        </td>
-        <td>
-          <a href="#" className='btn btn-primary'>Show</a>
-        </td>
-        <td>
-          <a href="#" className='btn'>Edit</a>
-        </td>
-        <td>
-          <a href="#" className='btn btn-error'>Destroy</a>
-        </td>
-      </tr>
+        </p>
+
+        <span className='btn'>Edit</span>
+        <span className='btn'  onClick={() => goBack()}>Back</span>
+      </div>
     );
   }
 }
