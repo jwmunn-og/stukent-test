@@ -9,7 +9,7 @@ class List extends React.Component {
   }
 
   render() {
-    const { posts, getPost, deletePost, showPostForm } = this.props;
+    const { posts, getPost, deletePost, showPostForm, togglePost } = this.props;
 
     const allPosts = posts.map((post, index) => {
       return (
@@ -42,6 +42,8 @@ class List extends React.Component {
             {allPosts}
           </tbody>
         </table>
+        <br /><br />
+        <span className='btn btn-success' onClick={() => togglePost()}>New Post</span>
       </div>
     );
   }

@@ -10,7 +10,8 @@ class Post extends React.Component {
       <div className="post-container">
         <p>
           <strong>Title:</strong>
-          {post.title} about Factorials {post.factorial.toString()}
+          {post.title} about Factorials
+          {/* {post.factorial.toString()} */}
         </p>
 
         <p>

@@ -53,6 +53,19 @@ class App extends React.Component {
     this.setState({ showPost: false, view: 'list' })
   }
 
+  submitPost = (data) => {
+    axios.post(`/posts`, data)
+      .then((res) => this.setState({ postFormVisible: false, view: 'list' }) )
+      .catch((err) => console.log(err.response.data) );
+  }
+
+  togglePost = () => {
+    this.setState({
+      view: 'form',
+      post: {}
+    })
+  }
+
   render() {
     const { showPost, postFormVisible, posts, post } = this.state;
 
@@ -60,16 +73,29 @@ class App extends React.Component {
       <div>
         {(() => {
           switch (this.state.view) {
-            case "list":   return <List
-            getPosts={this.getPosts}
-            posts={posts}
-            getPost={this.getPost}
-            deletePost={this.deletePost}
-            showPostForm={this.showPostForm}
-          />;
-            case "show":  return <Post post={post} showPostForm={this.showPostForm} goBack={this.goBack} />;
-            case "form":  return <PostForm post={post} getPost={this.getPost} goBack={this.goBack} />;
-            default:      return <List getPosts={this.getPosts} posts={posts} getPost={this.getPost} deletePost={this.deletePost} showPostForm={this.showPostForm} />;
+            case "list":  return <List
+              getPosts={this.getPosts}
+              posts={posts}
+              getPost={this.getPost}
+              deletePost={this.deletePost}
+              showPostForm={this.showPostForm}
+              togglePost={this.togglePost}
+            />;
+            case "show":  return <Post
+              post={post}
+              showPostForm={this.showPostForm}
+              goBack={this.goBack} />;
+            case "form":  return <PostForm
+              post={post}
+              getPost={this.getPost}
+              goBack={this.goBack}
+              submitPost={this.submitPost} />;
+            default:      return <List
+              getPosts={this.getPosts}
+              posts={posts}
+              getPost={this.getPost}
+              deletePost={this.deletePost}
+              showPostForm={this.showPostForm} />;
           }
         })()}
       </div>

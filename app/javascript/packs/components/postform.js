@@ -5,15 +5,20 @@ import PropTypes from 'prop-types'
 class PostForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
+    const isChecked = document.getElementById("myCheckbox").checked;
     const formData = {
       title: this.title.value,
-      body: this.body.value
+      body: this.body.value,
+      published: isChecked
     };
     console.log(formData);
+    this.props.submitPost(formData);
   }
 
+
+
   render() {
-    const { post, getPost, goBack } = this.props;
+    const { post, getPost, goBack, submitPost } = this.props;
 
     return (
       <div>
@@ -42,10 +47,8 @@ class PostForm extends React.Component {
 
           <div className="field">
             {/* Add ref for checkbox */}
-            <label className="form-checkbox" htmlFor="post_published">
-              <input name="post[published]" type="hidden" value="0"/>
-              <input id="post_published" className="form-checkbox" type="checkbox" value="1" name="post[published]"/>
-              <i className="form-icon"></i> Published
+            <label htmlFor="post_published">
+              <input id="myCheckbox" type="checkbox" onChange={this.handleInputChange} /> Published
             </label>
           </div>
 
