@@ -41,6 +41,7 @@ class App extends React.Component {
   }
 
   deletePost = (id) => {
+    alert('Are you sure?');
     const newPostsState = this.state.posts.filter((post) => post.id !== id );
 
     axios.delete(`/posts/${id}.json`)
