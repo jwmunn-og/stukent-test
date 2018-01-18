@@ -9,7 +9,7 @@ class List extends React.Component {
   }
 
   render() {
-    const { posts, getPost, deletePost } = this.props;
+    const { posts, getPost, deletePost, showPostForm } = this.props;
 
     const allPosts = posts.map((post, index) => {
       return (
@@ -19,6 +19,7 @@ class List extends React.Component {
           post={post}
           getPost={getPost}
           deletePost={deletePost}
+          showPostForm={showPostForm}
         />
       );
     });

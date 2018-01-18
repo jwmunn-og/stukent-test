@@ -8,12 +8,15 @@ import PropTypes from 'prop-types'
 import axios from 'axios';
 import List from './components/list'
 import Post from './components/post'
+import PostForm from './components/postform';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       showPost: false,
+      postFormVisible: false,
+      view: 'list',
       posts: [],
       post: {}
     }
@@ -27,7 +30,14 @@ class App extends React.Component {
 
   getPost = (url) => {
     axios.get(`${url}`)
-      .then((res) => this.setState({ post: res.data, showPost: true }) )
+      .then((res) => this.setState({ post: res.data, showPost: true, view: 'show' }) )
+      .catch((err) => console.log(err.response.data) );
+  }
+
+  showPostForm = (url) => {
+    console.log('run showPostForm');
+    axios.get(`${url}`)
+      .then((res) => this.setState({ post: res.data, postFormVisible: true, view: 'form' }) )
       .catch((err) => console.log(err.response.data) );
   }
 
@@ -40,26 +50,28 @@ class App extends React.Component {
   }
 
   goBack = () => {
-    this.setState({ showPost: false })
+    this.setState({ showPost: false, view: 'list' })
   }
 
   render() {
-    const { showPost, posts, post } = this.state;
+    const { showPost, postFormVisible, posts, post } = this.state;
 
     return (
       <div>
-        {showPost ?
-          <Post
-            post={post}
-            goBack={this.goBack} />
-          :
-          <List
+        {(() => {
+          switch (this.state.view) {
+            case "list":   return <List
             getPosts={this.getPosts}
             posts={posts}
             getPost={this.getPost}
             deletePost={this.deletePost}
-          />
-        }
+            showPostForm={this.showPostForm}
+          />;
+            case "show":  return <Post post={post} showPostForm={this.showPostForm} goBack={this.goBack} />;
+            case "form":  return <PostForm post={post} getPost={this.getPost} goBack={this.goBack} />;
+            default:      return <List getPosts={this.getPosts} posts={posts} getPost={this.getPost} deletePost={this.deletePost} showPostForm={this.showPostForm} />;
+          }
+        })()}
       </div>
 
     );

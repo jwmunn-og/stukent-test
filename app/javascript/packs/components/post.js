@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 
 class Post extends React.Component {
   render() {
-    const { showPost, post, goBack } = this.props;
+    const { showPost, showPostForm, post, goBack } = this.props;
 
     return (
-      <div className="note-container">
+      <div className="post-container">
         <p>
           <strong>Title:</strong>
           {post.title} about Factorials {post.factorial.toString()}
@@ -23,7 +23,7 @@ class Post extends React.Component {
           {post.published.toString()}
         </p>
 
-        <span className='btn'>Edit</span>
+        <span className='btn' onClick={() => showPostForm(post.url)}>Edit</span>
         <span className='btn'  onClick={() => goBack()}>Back</span>
       </div>
     );
