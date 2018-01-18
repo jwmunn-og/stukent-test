@@ -8,3 +8,15 @@
 // layout file, like app/views/layouts/application.html.erb
 
 console.log('Hello World from Webpacker');
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+// import './index.css';
+import App from './app.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <App />,
+    document.body.appendChild(document.createElement('div')),
+  )
+})
