@@ -16,7 +16,7 @@ class PostForm extends React.Component {
       factorial: assignFactorial
     };
     console.log(formData);
-    this.props.submitPost(formData);
+    this.props.submitPost(formData, this.props.post.id);
   }
 
   randomNumber = () => {

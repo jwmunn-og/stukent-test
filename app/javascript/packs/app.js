@@ -44,7 +44,7 @@ class App extends React.Component {
   deletePost = (id) => {
     const newPostsState = this.state.posts.filter((post) => post.id !== id );
 
-    axios.delete(`/posts/${id}`)
+    axios.delete(`/posts/${id}.json`)
     .then((res) => this.setState({ posts: newPostsState }))
     .catch((err) => console.log(err.response.data));
   }
@@ -53,8 +53,16 @@ class App extends React.Component {
     this.setState({ showPost: false, view: 'list' })
   }
 
-  submitPost = (data) => {
-    axios.post(`/posts`, data)
+  performSubmissionRequest = (data, id) => {
+    if (id) {
+      return axios.patch(`/posts/${id}.json`, data);
+    } else {
+      return axios.post(`/posts`, data);
+    }
+  }
+
+  submitPost = (data, id) => {
+    this.performSubmissionRequest(data, id)
       .then((res) => this.setState({ postFormVisible: false, view: 'list' }) )
       .catch((err) => console.log(err.response.data) );
   }
