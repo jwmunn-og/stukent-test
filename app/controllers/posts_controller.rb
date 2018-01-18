@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_action :verify_authenticity_token # Need to pass a token to avoid this solution
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
@@ -57,10 +58,6 @@ class PostsController < ApplicationController
   # DELETE /posts/1.json
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private

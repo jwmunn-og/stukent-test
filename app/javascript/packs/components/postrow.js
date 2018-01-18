@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 class PostRow extends React.Component {
   render() {
-    const { post, getPost } = this.props;
+    const { post, getPost, deletePost } = this.props;
 
     return (
       <tr>
@@ -25,7 +25,7 @@ class PostRow extends React.Component {
           <span className='btn'>Edit</span>
         </td>
         <td>
-          <span className='btn btn-error'>Destroy</span>
+          <span className='btn btn-error' onClick={() => deletePost(post.id)}>Destroy</span>
         </td>
       </tr>
     );

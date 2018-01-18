@@ -31,6 +31,14 @@ class App extends React.Component {
       .catch((err) => console.log(err.response.data) );
   }
 
+  deletePost = (id) => {
+    const newPostsState = this.state.posts.filter((post) => post.id !== id );
+
+    axios.delete(`/posts/${id}`)
+    .then((res) => this.setState({ posts: newPostsState }))
+    .catch((err) => console.log(err.response.data));
+  }
+
   goBack = () => {
     this.setState({ showPost: false })
   }
@@ -49,6 +57,7 @@ class App extends React.Component {
             getPosts={this.getPosts}
             posts={posts}
             getPost={this.getPost}
+            deletePost={this.deletePost}
           />
         }
       </div>
