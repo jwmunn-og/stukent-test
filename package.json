@@ -38,6 +38,6 @@
   },
   "scripts": {
     "webpack:deploy": "webpack --config=webpack/webpack.config.js -p",
-    "heroku-postbuild": "./bin/webpack-dev-server"
+    "heroku-postbuild": "/bin/webpack-dev-server"
   }
 }
