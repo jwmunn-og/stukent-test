@@ -29,7 +29,7 @@ class List extends React.Component {
         <h1>Posts</h1>
 
         <table className="table table-striped table-hover">
-          <thead>
+          <thead className="hide-sm">
             <tr>
               <th>Title</th>
               <th>Body</th>

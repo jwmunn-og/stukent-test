@@ -8,23 +8,25 @@ class PostRow extends React.Component {
 
     return (
       <tr>
-        <td>
+        <td className="mobile-display-block">
+          <strong className="show-sm">Title: </strong>
           {post.title}
         </td>
-        <td>
+        <td className="mobile-display-block">
+          <strong className="show-sm">Body: </strong>
           {post.body}
-          {post.published}
         </td>
-        <td>
+        <td className="mobile-display-block">
+          <strong className="show-sm">Published: </strong>
           {post.published.toString()}
         </td>
-        <td>
+        <td className="mobile-display-inline-block">
           <span className='btn btn-primary' onClick={() => getPost(post.url)}>Show</span>
         </td>
-        <td>
+        <td className="mobile-display-inline-block">
           <span className='btn' onClick={() => showPostForm(post.url)}>Edit</span>
         </td>
-        <td>
+        <td className="mobile-display-inline-block">
           <span className='btn btn-error' onClick={() => deletePost(post.id)}>Destroy</span>
         </td>
       </tr>
